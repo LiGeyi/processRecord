@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<!-- 是否启动webapp功能，会删除默认的苹果工具栏和菜单栏。 -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<!-- 这个主要是根据实际的页面设计的主体色为搭配来进行设置。 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<!-- 忽略页面中的数字识别为电话号码,email识别 -->
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<!-- 启用360浏览器的极速模式(webkit) -->
+		<meta name="renderer" content="webkit">
+		<!-- 避免IE使用兼容模式 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+		<meta name="HandheldFriendly" content="true">
+		<!-- 微软的老式浏览器 -->
+		<meta name="MobileOptimized" content="320">
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<title>继续加工</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel='stylesheet' type="text/css" href='css/init.css'/>
+		<link rel='stylesheet' type="text/css" href="css/continue_process.css"/>
+		<script>
+			// 设置 viewport 的缩放系数。
+			var iScale = 1;
+			iScale = iScale / window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=' + iScale + ', maximum-scale=' + iScale + ', minimum-scale=' + iScale + '" />');
+			// 设置 rem的基数
+			var num = document.documentElement.clientWidth / 10;
+			document.getElementsByTagName('html')[0].style.fontSize = num + 'px';
+		</script>
+	</head>
+	<body>
+		<!--弹框-->
+		<div class="showTips">
+			<div class="tipsTxt"></div>
+			<div class="tipsBtn clearfix">
+				<div class="cancelBtn fl">取消</div>
+				<div class="confirmBtn fl">确定</div>
+			</div>
+		</div>
+		<div class="mask1"></div>
+		<!--遮罩-->
+		<div class="mask" getBox=""></div>
+		<!--右侧弹出批次-->
+		<div class="batchPop">
+			<ul class="checkbox" id="checkbox">
+				<!--<li class="clearfix">
+					<div class="checkInput fl">
+						<input id="checkid_1" class="check" type="checkbox" >
+					</div>
+					<div class="batchMsgBox fl">
+						<div class="top clearfix">
+							<div class="fl">批号：<span class="batchNum">8-M-170512-F1v200</span></div>
+							<div class="stock fr">数量：<span>400</span></div>
+						</div>
+						<div class="bottom clearfix">
+							<div class="fl">时间：<span>2017-05-12 09:54:13</span></div>
+							<div class="fr">
+								<input class="number" type="text" onkeyup="checkNum(this)" placeholder="输入数量">
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="clearfix">
+					<div class="checkInput fl">
+						<input id="checkid_2" class="check" type="checkbox" >
+					</div>
+					<div class="batchMsgBox fl">
+						<div class="top clearfix">
+							<div class="fl">批号：<span class="batchNum">8-M-170512-F1v201</span></div>
+							<div class="stock fr">数量：<span>200</span></div>
+						</div>
+						<div class="bottom clearfix">
+							<div class="fl">时间：<span>2017-05-12 09:54:13</span></div>
+							<div class="fr">
+								<input class="number" type="text" onkeyup="checkNum(this)" placeholder="输入数量">
+							</div>
+						</div>
+					</div>
+				</li>-->
+			</ul>
+		</div>
+		<div id="proContinue">
+			<!--标题栏-->
+			<header>
+				<span class="backIcon" onclick="javascript:history.go(-1);" >
+					<img src="img/icon_shape_1.png">
+				</span>
+				<div class="site_selectione"></div>
+			</header>
+			<!--标题栏-->
+			<!--填写工序内容-->
+			<div class="proInput">
+				<form id="proForm">
+					<div>原料——商品</div>
+					<div class="innerCur showPop">
+						<ul class="showPopList goodsList">
+							<li class="clearfix">
+								<div class="goodsTit fl" id="choose_g1">商品名1</div>
+								<div class="goodsNum fr" id="choose_g1">数量：<input type="text" readonly="readonly" value="50" disabled="disabled" ifInput/></div>
+								<!--<div class="selectList">
+									<ul>
+										<li class="clearfix" >
+											<div class="batch_text fl">批号：7-M-170609-Nlq200</div>
+											<div class="num_text fl">数量：200</div>
+											<div class="list_img_close fr"></div>
+										</li>
+										<li class="clearfix" >
+											<div class="batch_text fl">批号：7-M-170609-Nlq200</div>
+											<div class="num_text fl">数量：200</div>
+											<div class="list_img_close fr"></div>
+										</li>
+									</ul>
+								</div>-->
+							</li>
+							<li class="clearfix">
+								<div class="goodsTit fl" id="choose_g1">商品名2</div>
+								<div class="goodsNum fr" id="choose_g1">数量：<input type="text" readonly="readonly" value="100" disabled="disabled" ifInput/></div>
+							</li>
+							<li class="clearfix">
+								<div class="goodsTit fl" id="choose_g1">商品名3</div>
+								<div class="goodsNum fr" id="choose_g1">数量：<input type="text" readonly="readonly" value="150" disabled="disabled" ifInput/></div>
+							</li>
+						</ul>
+					</div>
+					<div>原料——消耗品</div>
+					<div class="innerCur showPop">
+						<ul class="showPopList consumList">
+							<li class="clearfix">
+								<div class="goodsTit fl" id="choose_c1">消耗品1</div>
+								<div class="goodsNum fr" id="choose_g1">数量：<input type="text" readonly="readonly" value="200" disabled="disabled" ifInput/></div>
+							</li>
+							<li class="clearfix">
+								<div class="goodsTit fl" id="choose_c2">消耗品2</div>
+								<div class="goodsNum fr" id="choose_g1">数量：<input type="text" readonly="readonly" value="250" disabled="disabled" ifInput/></div>
+							</li>
+						</ul>
+					</div>
+					<div class="innerCur materialCopies clearfix">
+						<div class="fl">请输入您要制作的份数：</div>
+						<div class="copiesBox fl">
+							<input class="cutNum" value="－" readonly="readonly">
+							<input class="copiesInput" type="number" oninput="lostFocus()" name="copies" id="copies" value="1" />
+							<input class="addNum" value="+" readonly="readonly">
+						</div>
+					</div>
+					<div class="innerCur">
+						<ul class="elementList">
+							<li>
+								<span>元素名1：</span>
+								<input type="text" name="element1" id="element1" value="" placeholder="数量/值">
+							</li>
+							<li>
+								<span>元素名2：</span>
+								<input type="text" name="element2" id="element2" value="" placeholder="数量/值">
+							</li>
+							<li>
+								<span>元素名3：</span>
+								<input type="text" name="element3" id="element3" value="" placeholder="数量/值">
+							</li>
+						</ul>
+					</div>
+					<div class="proCont">
+						<div>工艺描述：</div>
+						<div>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+					</div>
+					<div class="innerCur">
+						<div>产出——商品</div>
+						<ul class="elementList">
+							<li>
+								<span>商品名1：</span>
+								<input type="text" name="goods1" id="goods1" disabled="disabled" value="450" ifInput>
+								<label>
+									<input name="saleProRadiog1" type="radio"  value="sale" id="saleRadiog1" checked="">
+									<span>销售</span>
+								</label>
+								<label>
+									<input name="saleProRadiog1" type="radio" value="pro" id="proRadiog1" >
+									<span>加工</span>
+								</label>
+								<div class="ifStorage">
+									<input name="storage" type="checkbox" value="" />
+									<span>是否入库</span>
+								</div>
+							</li>
+							<li>
+								<span>商品名2：</span>
+								<input type="text" name="goods2" id="goods2" disabled="disabled" value="500" ifInput>
+								<label>
+									<input name="saleProRadiog2" type="radio" value="sale" id="saleRadiog2" checked="">
+									<span>销售</span>
+								</label>
+								<label>
+									<input name="saleProRadiog2" type="radio" value="pro" id="proRadiog2" >
+									<span>加工</span>
+								</label>
+								<div class="ifStorage">
+									<input name="storage" type="checkbox" value="" />
+									<span>是否入库</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="innerCur">
+						<div>产出——消耗品</div>
+						<ul class="elementList">
+							<li>
+								<span>消耗品1：</span>
+								<input type="text" name="consumable1" disabled="disabled" id="consumable1" value="550" ifInput>
+								<label>
+									<input name="colProRadioc1" type="radio" value="sale" id="colRadioc1" checked="">
+									<span>采集</span>
+								</label>
+								<label>
+									<input name="colProRadioc1" type="radio" value="pro" id="proRadioc1" >
+									<span>加工</span>
+								</label>
+							</li>
+							<li>
+								<span>消耗品2：</span>
+								<input type="text" name="consumable2" disabled="disabled" id="consumable2" value="600" ifInput>
+								<label>
+									<input name="colProRadioc2" type="radio" value="sale" id="colRadioc2" checked="">
+									<span>采集</span>
+								</label>
+								<label>
+									<input name="colProRadioc2" type="radio" value="pro" id="proRadioc2" >
+									<span>加工</span>
+								</label>
+							</li>
+						</ul>
+					</div>
+					<div class="proCont">
+						<div>加工备注：</div>
+						<textarea id="proCont" placeholder="输入加工备注"></textarea>
+					</div>
+					<!--仅在新建第一道工序时出现-->
+					<div class="proCont">
+						<div>加工单备注：</div>
+						<textarea id="proSheet" placeholder="输入加工单备注"></textarea>
+					</div>
+					<!--仅在新建第一道工序时出现-->
+					<!--<input type="submit" value="Submit">-->
+				</form>
+				<!--按钮-->
+				<ul class="buttonList clearfix">
+					<li class="retraPro fl">回撤工序</li>
+					<li class="saveRecord fl">保存记录</li>
+					<li class="finishForm fl">完成此加工单</li>
+				</ul>
+				<!--按钮-->
+			</div>
+			<!--填写工序内容-->	
+		</div>
+	</body>
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<script src="js/continue_process.js"></script>
+</html>

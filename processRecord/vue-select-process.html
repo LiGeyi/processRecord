@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<!-- 是否启动webapp功能，会删除默认的苹果工具栏和菜单栏。 -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<!-- 这个主要是根据实际的页面设计的主体色为搭配来进行设置。 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<!-- 忽略页面中的数字识别为电话号码,email识别 -->
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<!-- 启用360浏览器的极速模式(webkit) -->
+		<meta name="renderer" content="webkit">
+		<!-- 避免IE使用兼容模式 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+		<meta name="HandheldFriendly" content="true">
+		<!-- 微软的老式浏览器 -->
+		<meta name="MobileOptimized" content="320">
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<title>选择加工模板</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel='stylesheet' type="text/css" href='css/init.css'/>
+		<link rel='stylesheet' type="text/css" href="css/select_process.css"/>
+		<script>
+			// 设置 viewport 的缩放系数。
+			var iScale = 1;
+			iScale = iScale / window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=' + iScale + ', maximum-scale=' + iScale + ', minimum-scale=' + iScale + '" />');
+			// 设置 rem的基数
+			var num = document.documentElement.clientWidth / 10;
+			document.getElementsByTagName('html')[0].style.fontSize = num + 'px';
+		</script>
+	</head>
+	<body>
+		<!--遮罩-->
+		<div class="mask"></div>
+		<div id="proRecord">
+			<!--标题栏-->
+			<header>
+				<span class="backIcon" onclick="javascript:history.go(-1);" >
+					<img src="img/icon_shape_1.png">
+				</span>
+				<div class="site_selectione">选择加工模块</div>
+			</header>
+			<!--标题栏-->
+			<!--选择模板平台加工-->
+			<!--<div class="chooseModel">
+				<div class="modelBox"  ifSelect="0" tabindex="0" onblur="hideModel();">--选择模板开始加工--</div>
+				<div class="model_arrow"><img src="./img/icon_shape_7_b.png"></div>
+				<ul class="modelList">
+					<li>模板名称1</li>
+					<li>模板名称2</li>
+					<li>模板名称3</li>
+					<li>模板名称4</li>
+					<li>模板名称5</li>
+					<li>模板名称6</li>
+					<li>模板名称7</li>
+				</ul>
+			</div>-->
+			<!--加工完成情况选择tit-->
+			<div class="proSituationTit clearfix">
+				<div class='do_pro fl act1'>进行中的加工</div>
+				<div class='finish_pro fl'>已完成的加工 </div>
+			</div>
+			<!--加工完成情况选择tit-->
+			<div class="proSituation">
+				<div class="proInner">
+					<div class="chooseTime clearfix">
+						<div class="year_select fl">
+							<select class="selectY" name="" size="1">
+								<option value="0">- - 选择年份 - -</option>
+								<option value="2016">2016年</option>
+								<option value="2017">2017年</option>
+							</select>
+							<div class="select_arrow"><img src="./img/icon_shape_7.png"></div>
+						</div>
+						<div class="month_select fl">
+							<select class="selectM" name="" size="1">
+								<option value="0">- - 选择月份 - -</option>
+							</select>
+							<div class="select_arrow"><img src="./img/icon_shape_7.png"></div>
+						</div>
+					</div>
+					<div class="listBox">
+						<ul class="machList clearfix">
+							<!--<li>
+								<div class="machNum">加工单号1</div>
+								<div class="modelName">模板名称1</div>
+								<div class="mach_s_time">2017-04-18 09:20:14</div>
+							</li>
+							<li>
+								<div class="machNum">加工单号1</div>
+								<div class="modelName">模板名称1</div>
+								<div class="mach_s_time">2017-04-18 09:20:14</div>
+							</li>
+							<li>
+								<div class="machNum">加工单号1</div>
+								<div class="modelName">模板名称1</div>
+								<div class="mach_s_time">2017-04-18 09:20:14</div>
+							</li>
+							<li>
+								<div class="machNum">加工单号1</div>
+								<div class="modelName">模板名称1</div>
+								<div class="mach_s_time">2017-04-18 09:20:14</div>
+							</li>-->
+						</ul>
+						<ul class="finishList clearfix" style="display: none;"></ul>
+					</div>
+					<!--弹框-->
+					<ul class="do_pro_pop" style="height: auto;">
+						<li getProNum="" class="goHistory">查看历史记录</li>
+						<li class="continuePro" getmodelname="模板名称1" style="height: auto;">
+    						<div class="continueTit">跳转继续加工</div>
+    						<!--两个-->
+    						<!--<div class="smodelList">
+							    <div class="tableCell">工序名称1</div>
+							    <div class="tableCell">工序名称工序名称工序名称2</div>
+    						</div>-->
+    						<!---->
+    						<!--一个-->
+    						<div class="oneList">
+    							<div>工序名称工序名称</div>
+    						</div>
+    						<!---->
+						</li>
+					</ul>
+					<!--<div class="do_pro_pop">
+						<div class="tabBtn clearfix">
+							<div class="fl tabActive">查看历史记录</div>
+							<div class="fl">跳转继续加工</div>
+						</div>
+						<div class="tabInner">
+							<div class="historyInner">
+								<div class="historyTxt">历史描述</div>
+								<div class="goHistory">
+									查看历史记录
+								</div>
+							</div>
+							<div class="goBtn">
+								<div>工序名称工序名称1</div>
+								<div>工序名称工序名称2</div>
+							</div>
+						</div>
+					</div>-->
+					<!--弹框-->
+					<div class="modelCont">
+						<div class="modelTit">
+							<div class="modelTitInner">↑ 模块名称1（加工单号1） ↑</div>
+						</div>
+						<ul class="stepList clearfix">
+							<!--<li>
+								<div class="stepNum">工序名称1</div>
+								<div class="step_time">2017-04-18 09:20:14</div>
+							</li>
+							<li>
+								<div class="stepNum">工序名称1</div>
+								<div class="step_time">2017-04-18 09:20:14</div>
+							</li>
+							<li>
+								<div class="stepNum">工序名称1</div>
+								<div class="step_time">2017-04-18 09:20:14</div>
+							</li>
+							<li>
+								<div class="stepNum">工序名称1</div>
+								<div class="step_time">2017-04-18 09:20:14</div>
+							</li>
+							<li>
+								<div class="stepNum">工序名称1</div>
+								<div class="step_time">2017-04-18 09:20:14</div>
+							</li>-->
+						</ul>
+					</div>
+					<!--弹框——工序详情-->
+					<div class="proCont_pop">
+						<div class="proContTit">工序名称1</div>
+						<div class="recordMsg">
+							<div>记录时间：<span>2017-04-18 14:11:50</span></div>
+							<div>记录人员：<span>彭创</span></div>
+						</div>
+						<div class="materialBox gap">
+							<div class="click_tip"><span style="color: #323232;">原材料</span>（点击原材料可查看原材料溯源日记）</div>
+							<div class="material_cur">
+								<div>原材料1</div>
+								<ul>
+									<li>
+										<span>批次：</span><span class="batch"  onClick="window.location.href='plant_record.html'">1-E-10254-PT100-1</span>
+										<span>数量：</span><span class="raw_material_num">10.0</span>
+									</li>
+									<li>
+										<span>批次：</span><span class="batch" onClick="window.location.href='plant_record.html'">1-E-10254-PT100-2</span>
+										<span>数量：</span><span class="raw_material_num">15.0</span>
+									</li>
+								</ul>
+							</div>
+							<div class="material_cur">
+								<div>原材料2</div>
+								<ul>
+									<li>
+										<span>批次：</span><span class="batch"  onClick="window.location.href=''">1-E-10254-PT100-1</span>
+										<span>数量：</span><span class="raw_material_num">10.0</span>
+									</li>
+									<li>
+										<span>批次：</span><span class="batch" onClick="window.location.href=''">1-E-10254-PT100-2</span>
+										<span>数量：</span><span class="raw_material_num">15.0</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="materialBox gap">
+							<div class="click_tip"><span style="color: #323232;">辅料</span>（点击辅料可查看原材料溯源日记）</div>
+							<div class="material_cur">
+								<div>辅料1：</div>
+								<div>
+									<span>批次：</span><span class="batch">1-J-10130-BJ100-1</span>
+									<span>数量：</span><span>1.0</span>
+								</div>
+							</div>
+							<div class="material_cur">
+								<div>辅料2：</div>
+								<div>
+									<span>批次：</span><span class="batch">1-S-10100-DS100-1</span>
+									<span>数量：</span><span>3.0</span>
+								</div>
+							</div>
+						</div>
+						<!--产出-->
+						<div class="materialBox gap">
+							<div class="click_tip"><span style="color: #323232;">产出</span></div>
+							<div class="material_cur">
+								<div>商品：</div>
+								<ul class="produce_list">
+									<li>
+										<span  class="shop_tit">商品名1</span>
+										<span>数量：</span><span class="shop_num">10.0</span>
+									</li>
+									<li>
+										<span  class="shop_tit">商品名2</span>
+										<span>数量：</span><span class="shop_num">15.0</span>
+									</li>
+								</ul>
+							</div>
+							<div class="material_cur">
+								<div>消耗品：</div>
+								<ul class="produce_list">
+									<li>
+										<span  class="shop_tit">消耗品1</span>
+										<span>数量：</span><span class="shop_num">10.0</span>
+									</li>
+									<li>
+										<span  class="shop_tit">消耗品2</span>
+										<span>数量：</span><span class="shop_num">15.0</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!--产出-->
+						<ul class="elementRecord gap clearfix">
+							<li>生石灰：200</li>
+							<li>纯碱：300</li>
+							<li>草木灰：400</li>
+							<li>水：500</li>
+							<li>茶叶：600</li>
+						</ul>
+						<div class="remarks">
+							<div class="remarksTit">加工备注：</div>
+							<div class="remarksInner">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+						</div>
+						<div class="proCont_pop_footer">
+							<img src="img/4.png"/>
+						</div>
+					</div>
+					<!--弹框——工序详情-->
+				</div>
+			</div>
+			<!--侧边栏-->
+			<!--<div class="lateralNav">
+				<div class="navTitList">
+					<div class="navTit" id="cPlace">场地</div>
+					<div class="navTit" id="cSonPlace">子场地</div>
+					<div class="navTit" id="cModel">选择模板</div>
+					<div class="navTit" id="cProcess">选择工序</div>
+				</div>
+				<ul class="navList">
+					<li>长沙岳天顶街道中电软件园总部大楼场地1号</li>
+					<li>区天顶街道中电软件园总部大楼场地2号</li>
+					<li>天顶街软件园总部大楼场地3号</li>
+					<li>麓区天顶街道中电软件园总部大楼场地1号</li>
+					<li>沙岳麓区天顶街道中电软件园总部大楼场地2号</li>
+					<li>长沙岳麓区天顶街道中电软件园总部大楼场地3号</li>
+					<li>沙岳麓区天顶街道中场地1号</li>
+					<li>长沙岳麓区天顶街道中电软件园总部大楼场地2号</li>
+					<li>麓区天顶街道中电软件园总部大楼场地3号</li>
+					<li>长沙岳麓区天顶街道中电大楼场地1号</li>
+					<li>长沙岳麓区天电软件园总部大楼场地2号</li>
+					<li>长沙岳麓区天顶街道中电软件园总部大楼场地3号</li>
+					<li>长沙区天顶街道中地1号</li>
+					<li>长沙岳麓区天顶街道中电大楼场地2号</li>
+					<li>麓区天顶街道中电软楼场地3号</li>
+					<li>长沙岳麓区天顶街道中电软件园总部大楼场地3号</li>
+					<li>沙岳麓区天顶街道中场地1号</li>
+					<li>长沙岳麓区天顶街道中电软件园总部大楼场地2号</li>
+					<li>麓区天顶街道中电软件园总部大楼场地3号</li>
+					<li>长沙岳麓区天顶街道中电软件园总部大楼场地1号</li>
+					<li>长沙岳麓区天电软件园总部大楼场地2号</li>
+					<li>长沙岳麓区天顶街道中电软件园总部大楼场地3号</li>
+					<li>长沙区天顶街道中地1号</li>
+				</ul>
+				<div class="navMask"></div>
+			</div>-->
+			<!--侧边栏-->
+			
+			<!--条件筛选-->
+			<div class="lateralNav">
+				<div class="listTit">筛选</div>
+				<div class="navList">
+					<div class="navCur" id="cPlace">
+						<div class="navTit">
+							<span>选择场地</span>
+							<img src="img/down-icon.png"/>
+						</div>
+						<div class="cPlaceList curBox"></div>
+					</div>
+					<div class="navCur" id="cSonPlace">
+						<div class="navTit">
+							<span>选择子场地</span>
+							<img src="img/down-icon.png"/>
+						</div>
+						<div class="cSonPlaceList curBox"></div>
+					</div>
+					<div class="navCur" id="cModel">
+						<div class="navTit">
+							<span>选择模板</span>
+							<img src="img/down-icon.png"/>
+						</div>
+						<div class="cModelList curBox"></div>
+					</div>
+					<div class="navCur" id="cProcess">
+						<div class="navTit">
+							<span>选择工序</span>
+							<img src="img/down-icon.png"/>
+						</div>
+						<div class="cProcessList curBox"></div>
+					</div>
+					<div class="gapBox"></div>
+				</div>
+				<div class="showNavIcon">
+					<img src="img/shaixuan.png"/>
+				</div>
+				<div class="navMask"></div>
+				<div class="listBtn clearfix">
+					<div class="btnBox clearfix fr">
+						<div class="restart fl">重置</div>
+						<div class="listComfirm fr">确定</div>
+					</div>
+				</div>
+			</div>
+			<!--条件筛选-->
+		</div>
+		<input type="hidden" name="screenObj" id="screenObj" value="" />
+	</body>
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vue-select-process.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			axios.post('https://ligeyi.github.io/myOriginalProject/screen.json', {
+	    
+	   
+		  	})
+		  	.then(function (response) {
+			    console.log(response);
+		  	})
+			.catch(function (error) {
+		    	console.log(error);
+		  	});
+		})
+		//侧边栏——————1
+//		$(function(){
+//			$(".lateralNav").on("click","#cPlace",function(){
+//				var getId = $(this).attr('id');
+//				showList(getId);
+//			})
+//			$(".lateralNav").on("click",".cPlace li",function(){ 
+//				var obj = $(this);
+//				hideList();
+//				rechoose(100,obj);
+//			});
+//			$(".lateralNav").on("click","#cSonPlace",function(){
+//				var getId = $(this).attr('id');
+//				showList(getId);
+//			});
+//			$(".lateralNav").on("click",".cSonPlace li",function(){ 
+//				var obj = $(this);
+//				hideList();
+//				rechoose(10,obj);
+//			});
+//			$(".lateralNav").on("click","#cModel",function(){
+//				var getId = $(this).attr('id');
+//				showList(getId);
+//			});
+//			$(".lateralNav").on("click",".cModel li",function(){ 
+//				var obj = $(this);
+//				hideList();
+//				rechoose(1,obj);
+//			});
+//			$(".lateralNav").on("click","#cProcess",function(){
+//				var getId = $(this).attr('id');
+//				showList(getId);
+//			});
+//			$(".lateralNav").on("click",".cProcess li",function(){ 
+//				var obj = $(this);
+//				hideList();
+//				rechoose(0,obj);
+//			});
+//			$(".navMask").click(function(){
+//				hideList();
+//			});
+//		})
+//		function showList(getId){
+//			$(".navMask").show();
+//			$(".navList").addClass('navShow');
+//			$(".navList").addClass(getId);
+//		}
+//		function hideList(){
+//			$(".navList").removeClass('navShow');
+//			$(".navMask").hide();
+//		}
+//		function rechoose(cNum,obj){
+//			var getPlace = obj.html();
+//			var getClass = obj.parent().attr('class');
+//			var classObj = getClass.split(' ')[1];
+//			$("#"+classObj).html(getPlace.substr(0,6)+'</br>....');
+//			$("#"+classObj).next().addClass('showTit');
+//			$(".navList").removeClass(classObj);
+//			if(cNum >= 100){
+//				$("#cSonPlace").html('子场地');
+//				$("#cProcess").removeClass('showTit');
+//				$("#cModel").removeClass('showTit');
+//			}
+//			if(cNum >= 10){
+//				$("#cModel").html('选择模板');
+//				$("#cProcess").removeClass('showTit');
+//			}
+//			if(cNum >= 1){
+//				$("#cProcess").html('选工序');
+//			}
+//		}
+		//侧边栏——————1
+	</script>
+</html>

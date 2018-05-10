@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<!-- 是否启动webapp功能，会删除默认的苹果工具栏和菜单栏。 -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<!-- 这个主要是根据实际的页面设计的主体色为搭配来进行设置。 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<!-- 忽略页面中的数字识别为电话号码,email识别 -->
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<!-- 启用360浏览器的极速模式(webkit) -->
+		<meta name="renderer" content="webkit">
+		<!-- 避免IE使用兼容模式 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+		<meta name="HandheldFriendly" content="true">
+		<!-- 微软的老式浏览器 -->
+		<meta name="MobileOptimized" content="320">
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<title>添加生产记录</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel='stylesheet' type="text/css" href='css/init.css'>
+		<link rel="stylesheet" type="text/css" href="css/addRecord.css"/>
+		<script>
+			// 设置 viewport 的缩放系数。
+			var iScale = 1;
+			iScale = iScale / window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=' + iScale + ', maximum-scale=' + iScale + ', minimum-scale=' + iScale + '" />');
+			// 设置 rem的基数
+			var num = document.documentElement.clientWidth / 10;
+			document.getElementsByTagName('html')[0].style.fontSize = num + 'px';
+		</script>
+	</head>
+	<body>
+		<!--遮罩-->
+		<div class="mask"></div>
+		<!--侧边栏——选择唯一批次-->
+		<div class="batchPop">
+			<ul class="checkbox" id="checkbox">
+				<li class="clearfix">
+					<label>
+						<div class="checkInput fl">
+							<input id="checkid_1" name="batchCheckbox" class="check" type="checkbox">
+						</div>
+						<div class="batchMsgBox fl">
+							<div class="top clearfix">
+								<div class="fl">批号：<span class="batchNum">7-M-170512-F1v200</span></div>
+								<div class="stock fr">数量：<span>400</span></div>
+							</div>
+							<div class="bottom">
+								<div>时间：2017-04-18 09:30:25</div>
+							</div>
+						</div>
+					</label>
+				</li>
+				<li class="clearfix">
+					<label>
+						<div class="checkInput fl">
+							<input id="checkid_2" name="batchCheckbox" class="check" type="checkbox">
+						</div>
+						<div class="batchMsgBox fl">
+							<div class="top clearfix">
+								<div class="fl">批号：<span class="batchNum">7-M-170512-F1v201</span></div>
+								<div class="stock fr">数量：<span>200</span></div>
+							</div>
+							<div class="bottom ">
+								<div>时间：2017-06-20 11:15:05</div>
+							</div>
+						</div>
+					</label>
+				</li>
+				<li class="clearfix">
+					<label>
+						<div class="checkInput fl">
+							<input id="checkid_3" name="batchCheckbox" class="check" type="checkbox">
+						</div>
+						<div class="batchMsgBox fl">
+							<div class="top clearfix">
+								<div class="fl">批号：<span class="batchNum">7-M-170512-F1v202</span></div>
+								<div class="stock fr">数量：<span>100</span></div>
+							</div><div class="bottom">
+								<div>时间：2017-09-14 15:17:36</div>
+							</div>
+						</div>
+					</label>
+				</li>
+			</ul>
+		</div>
+		<!--侧边栏——选择唯一批次-->
+		<div id="addRecord">
+			<!--title-->
+			<header>
+				<span class="backIcon" onclick="javascript:window.history.back();">
+					<img src="img/icon_shape_1.png"/>
+				</span>
+				<span class="homeIcon" onclick="javascript:window.location.href='/syxt/Phone/SiteList.do'">
+					<img src="img/icon-home.png"/>
+				</span>
+				<div class="site_selectione">添加生产记录</div>
+				<span ifselect="0" class="site" onclick="showMore();" onblur="hideMore();" tabindex="0">
+					<img src="img/icon_shape_2.png"/>
+				</span>
+			</header>
+			<!--title-->
+			<!--选择内容btn-->
+			<!--<div class="chooseBtn">
+				<div class="chooseradio clearfix">
+					<label class="fl nowLabel">
+						<input name="chooseRadio" type="radio" value="add" id="addRadio" checked="">
+						<span>添加</span>
+					</label>
+					<label class="fr">
+						<input name="chooseRadio" type="radio" value="adjust" id="adjustRadio">
+						<span>调整</span>
+					</label>
+				</div>
+			</div>-->
+			<!--1205add-->
+			<div class="chooseTab clearfix">
+				<div class="addTab fl act1">添加</div>
+				<div class="justTab fl">调整 </div>
+			</div>
+			<!--添加content-->
+			<div class="recordBox">
+				<!--商品列表——点击出侧边栏-->
+				<div class="boxTit">点击商品选择批次</div>
+				<ul class="innerCur shopList">
+					<li>商品名称1</li>
+					<li>商品名称2</li>
+					<li>商品名称3</li>
+				</ul>
+				<!--被选中批次信息-->
+				<div class="innerCur chooseBox">
+					<div>被选中批次信息：</div>   
+					<div class="innerCur batchMsg">
+						<div class="shopName"></div>
+						<div class="shopBatch"></div>
+						<div class="shopTime"></div>
+						<div class="deleteMsg">
+							<img src="img/icon_shape_13.png"/>
+						</div>
+					</div>
+				</div>
+				<!--产出——商品-->
+				<div class="boxTit">产出——商品</div>
+				<div class="innerCur">
+					<ul class="proShop">
+						<li>
+							<div class="proShopNum">
+								<span>商品名1：</span>
+								<input type="text" name="goods1" id="goods1"  placeholder="输入数量">
+							</div>
+							<div class="radioBox">
+								<label>
+									<input name="saleRadiog1" type="radio" value="sale" id="saleRadiog1" checked="">
+									<span>用于出售</span>
+								</label>
+								<label>
+									<input name="saleRadiog1" type="radio" value="pro" id="proRadiog1">
+									<span>用于加工</span>
+								</label>
+							</div>
+							<div class="autoStorage">
+								<label>
+									<input name="storage" type="checkbox" value="">
+									<span>自动入库</span>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="proShopNum">
+								<span>商品名2：</span>
+								<input type="text" name="goods2" id="goods2"  placeholder="输入数量">
+							</div>
+							<div class="radioBox">
+								<label>
+									<input name="saleRadiog2" type="radio" value="sale" id="saleRadiog2" checked="">
+									<span>用于出售</span>
+								</label>
+								<label>
+									<input name="saleRadiog2" type="radio" value="pro" id="proRadiog2">
+									<span>用于加工</span>
+								</label>
+							</div>
+							<div class="autoStorage">
+								<label>
+									<input name="storage" type="checkbox" value="">
+									<span>自动入库</span>
+								</label>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--产出——商品-->
+				<!--产出——消耗品-->
+				<div class="boxTit">产出——消耗品</div>
+				<div class="innerCur">
+					<ul class="proConsume">
+						<li>
+							<div class="proConsumeNum">
+								<span>消耗品名称1：</span>
+								<input type="text" name="consume1" id="consume1"  placeholder="输入数量">
+							</div>
+							<div class="radioBox">
+								<label>
+									<input name="consumeRadiog1" type="radio" value="collection" id="consumeRadiog1" checked="">
+									<span>用于采集</span>
+								</label>
+								<label>
+									<input name="consumeRadiog1" type="radio" value="pro" id="consumeRadiog1">
+									<span>用于加工</span>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="proConsumeNum">
+								<span>消耗品名称2：</span>
+								<input type="text" name="consume2" id="consume2"  placeholder="输入数量">
+							</div>
+							<div class="radioBox">
+								<label>
+									<input name="consumeRadiog2" type="radio" value="collection" id="consumeRadiog2" checked="">
+									<span>用于采集</span>
+								</label>
+								<label>
+									<input name="consumeRadiog2" type="radio" value="pro" id="consumeRadiog2">
+									<span>用于加工</span>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="proConsumeNum">
+								<span>消耗品名称1：</span>
+								<input type="text" name="consume3" id="consume3"  placeholder="输入数量">
+							</div>
+							<div class="radioBox">
+								<label>
+									<input name="consumeRadiog3" type="radio" value="collection" id="consumeRadiog3" checked="">
+									<span>用于采集</span>
+								</label>
+								<label>
+									<input name="consumeRadiog3" type="radio" value="pro" id="consumeRadiog3">
+									<span>用于加工</span>
+								</label>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--产出——消耗品-->
+				<!--生产备注-->
+				<div class="innerCur">
+					<div>加工备注：</div>
+					<textarea id="proCont" placeholder="输入加工备注"></textarea>
+				</div>
+				<!--生产备注-->
+				<!--提交btn-->
+				<div class="submitBtn clearfix">
+					<div class="fr">提交</div>
+				</div>
+				<!--提交btn-->
+			</div>
+			<!--添加content-->
+			<!--调整content-->
+			<div class="adjustBox">
+				<!--选择年月-->
+				<div class="chooseTime clearfix" style="display: block;">
+					<div class="year_select fl">
+						<select class="selectY" name="" size="1">
+							<option value="0">- - 选择年份 - -</option>
+							<option value="2016">2016年</option>
+							<option value="2017">2017年</option>
+						</select>
+						<div class="select_arrow"><img src="./img/icon_shape_7.png"></div>
+					</div>
+					<div class="month_select fl">
+						<select class="selectM" name="" size="1">
+							<option value="0">- - 选择月份 - -</option>
+						</select>
+						<div class="select_arrow"><img src="./img/icon_shape_7.png"></div>
+					</div>
+				</div>
+				<!--选择年月-->
+				<!--时间结果-->
+				<div class="innerCur timeBox">
+					<ul class="timeList clearfix">
+						<!--<li>2017-10-11 12:25:23</li>-->
+					</ul>
+				</div>
+				<!--时间结果-->
+				<div class="timeResult">
+					<!--母体信息-->
+					<div class="boxTit">母体信息</div>
+					<div class="innerCur matrixMsg">
+						<div>名称：商品1</div>
+						<div>批号：1-E-10254-PT100-1</div>
+						<div>数量：222222</div>
+					</div>
+					<!--母体信息-->
+					<!--产出商品-->
+					<div class="boxTit">产出商品</div>
+					<ul class="innerCur outPutShop">
+						<!--<li>
+							<div>名称：商品1</div>
+							<div class="ourPut clearfix">
+								<div class="fl">批号：1-E-10254-PT100-1</div>
+								<div class="fr">
+									<span>数量：</span>
+									<input type="text" name="ourPutGoods1" id="ourPutGoods1" placeholder="数量">
+								</div>
+							</div>
+							<div class="lineBox">
+								<span>状态：</span>
+								<label>
+									<input name="stateRadiog" type="radio" value="hasStorage" id="hasStorage" checked="">
+									<span>已入库</span>
+								</label>
+								<label>
+									<input name="stateRadiog" type="radio" value="noStorage" id="noStorage">
+									<span>无</span>
+								</label>
+							</div>
+							<div>
+								<span>用途：</span>
+								<label>
+									<input name="outPutRadiog1" type="radio" value="sale" id="OsaleRadiog1" checked="">
+									<span>用于出售</span>
+								</label>
+								<label>
+									<input name="outPutRadiog1" type="radio" value="pro" id="OproRadiog1">
+									<span>用于加工</span>
+								</label>
+							</div>
+						</li>-->
+					</ul>
+					<!--产出商品-->
+					<!--产出消耗品-->
+					<div class="boxTit">产出消耗品</div>
+					<ul class="innerCur outPutConsum">
+						<!--<li>
+							<div>名称：消耗品1</div>
+							<div class="ourPut clearfix">
+								<div class="fl">批号：1-Y-10254-PT100-1</div>
+								<div class="fr">
+									<span>数量：</span>
+									<input type="text" name="outPutConsum1" id="outPutConsum1" placeholder="数量">
+								</div>
+							</div>
+							<div>
+								<span>用途：</span>
+								<label>
+									<input name="outPutConsumRadiog1" type="radio" value="sale" id="OCsaleRadiog1" checked="">
+									<span>用于出售</span>
+								</label>
+								<label>
+									<input name="outPutConsumRadiog1" type="radio" value="pro" id="OCproRadiog1">
+									<span>用于加工</span>
+								</label>
+							</div>
+						</li>-->
+					</ul>
+					<!--备注-->
+					<div class="innerCur remarks">
+						<div>备注：</div>
+						<textarea id="proCont" placeholder="输入备注"></textarea>
+					</div>
+					<div class="OutPutBtn clearfix">
+						<!--1205add-->
+						<div class="fl">删除</div>
+						<div class="fr">提交</div>
+					</div>
+					<!--产出消耗品-->
+				</div>
+			</div>
+			<!--调整content-->
+		</div>
+	</body>
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<script src="js/addRecord.js"></script>
+</html>

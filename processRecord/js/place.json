@@ -1,0 +1,71 @@
+[
+    {
+        "siteId": 1,
+        "siteName": "暂养池1",
+        "childSites": [
+            {
+                "childSiteId": 5,
+                "childSiteName": "1号池"
+            },
+            {
+                "childSiteId": 6,
+                "childSiteName": "2号池"
+            },
+            {
+                "childSiteId": 13,
+                "childSiteName": "6号池"
+            }
+        ]
+    },
+    {
+        "siteId": 2,
+        "siteName": "种鱼池",
+        "childSites": [
+            {
+                "childSiteId": 8,
+                "childSiteName": "3号池"
+            }
+        ]
+    },
+    {
+        "siteId": 3,
+        "siteName": "商品池",
+        "childSites": [
+            {
+                "childSiteId": 12,
+                "childSiteName": "5号池"
+            }
+        ]
+    },
+    {
+        "siteId": 14,
+        "siteName": "孵化池",
+        "childSites": [
+            {
+                "childSiteId": 15,
+                "childSiteName": "1号池"
+            },
+            {
+                "childSiteId": 16,
+                "childSiteName": "2号池"
+            }
+        ]
+    },
+    {
+        "siteId": 17,
+        "siteName": "病害池",
+        "childSites": [
+            {
+                "childSiteId": 18,
+                "childSiteName": "1号池"
+            }
+        ]
+    },
+    {
+        "siteId": 19,
+        "siteName": "死亡池",
+        "childSites": [
+            
+        ]
+    }
+]
